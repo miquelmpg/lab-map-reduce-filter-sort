@@ -1,4 +1,4 @@
-
+// Parte para mirar test npm run test test/map.spec.js
 
 /**
  * Dado un array de números representados como string, transformarlo a un array de enteros.
@@ -7,7 +7,12 @@
  * @returns [1, 2, 3, -1]
  */
 function parseNumbers(numbersAsString) {
-  
+  return numbersAsString.map(element => {
+    if (isNaN(+element)) {
+      return -1;
+    }
+    return +element;
+  });
 }
 
 /**
@@ -16,7 +21,13 @@ function parseNumbers(numbersAsString) {
  * @returns [0, 3, 2, 5]
  */
 function sumEvenSubOdd(numbers) {
-  
+  return numbers.map(number => {
+    if (number % 2 === 0) {
+      return number + 1;
+    } else {
+      return number - 1;
+    }
+  })
 }
 
 /**
@@ -80,7 +91,19 @@ function sumEvenSubOdd(numbers) {
     ]
  */
 function buildStudentsAvg(students) {
-  
+  return students.map(student => {
+    if (student.marks.length === 0) {
+      student.avg = 0;
+      return student;
+    } else {
+      let sumMarks = 0;
+      for (subject of student.marks) {
+        sumMarks += subject.grade;
+      }
+      student.avg = sumMarks / student.marks.length;
+      return student;
+    }
+  });
 }
 
 /**
@@ -94,7 +117,10 @@ function buildStudentsAvg(students) {
  * // [{name: "Bread", price: 2, quantity: 3, total: 6}]
  */
 function addTotalPrice(products) {
-
+  return products.map(product => {
+    product.total = product.quantity * product.price;
+    return product;
+  });
 }
 
 

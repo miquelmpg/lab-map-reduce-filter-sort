@@ -1,11 +1,15 @@
+// Parte para mirar test npm run test test/reduce.spec.js
 
 /**
  * Suma todos los números de un array
  * @param [1, 2, 3, 4] numbers
- * @returns [2, 4]
+ * @returns [3, 6, 10]
  */
 function sum(numbers) {
-  
+   return numbers.reduce(
+      (acc, el) =>  acc + el, 
+      0
+   );
 }
 
 
@@ -19,7 +23,13 @@ function sum(numbers) {
  * @returns [{ name: 'Juanito', grade: 9 }]
  */
 function bestStudent(students) {
-  
+   return students.reduce((bestStudent, student) => {
+      if (!bestStudent || 
+         student.grade > bestStudent.grade) {
+         bestStudent = student.grade;
+      };
+      return student;
+   }, undefined);
 }
 
 
@@ -38,7 +48,13 @@ function bestStudent(students) {
   }
  */
 function countWords(words) {
-  
+   return words.reduce((countWords, word) => {
+      if (!countWords[word]) {
+         countWords[word] = 0;
+      }
+      countWords[word]++;
+      return countWords;
+   },{});
 }
 
 /**
@@ -52,7 +68,7 @@ function countWords(words) {
  * // 6
  */
 function getTotalPrice(products) {
-
+   return products.reduce((totalPrice, product) => totalPrice + product.price, 0);
 }
 
 /**
@@ -66,7 +82,13 @@ function getTotalPrice(products) {
  * // { Fruit: 2, Vegetable: 1 }
  */
 function countByCategory(products) {
-   
+   return products.reduce((countCategory, category) => {
+      if (!countCategory[category.category]) {
+         countCategory[category.category] = 0;
+      };
+      countCategory[category.category]++;
+      return countCategory;
+   },{})
 }
 
 /**
@@ -80,7 +102,12 @@ function countByCategory(products) {
  * // "Anna, Carlos, Bea"
  */
 function joinNames(users) {
-
+   return users.reduce((userNames, user, index) => {
+      if (index === 0) {
+         return user.name;
+      }
+      return `${userNames}, ${user.name}`;
+   }, "");
 }
 
 
